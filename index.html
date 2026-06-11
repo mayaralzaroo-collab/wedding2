@@ -28,80 +28,62 @@ video {
   object-fit: cover;
 }
 
-/* ✨ upgraded luxury overlay */
+/* overlay */
 .overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.65)
-  );
+  background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(245,240,230,0.15));
 }
 
-/* ================= INVITATION CENTER ================= */
-.invite {
+/* NAME */
+.name {
   position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 42%;
+  width: 100%;
   text-align: center;
-  color: #f5e6d3;
-}
-
-/* small line */
-.subtitle {
-  font-size: 14px;
-  letter-spacing: 4px;
-  opacity: 0;
-
-  transform: translateY(10px);
-  transition: all 1s ease;
-}
-
-/* big names */
-.title {
+  font-size: 42px;
+  color: #f8f1e7;
   font-family: 'Cinzel', serif;
-  font-size: 52px;
   letter-spacing: 3px;
-  margin-top: 10px;
 
   opacity: 0;
-  transform: scale(0.85) translateY(20px);
-
-  transition: all 1.4s ease;
-
-  text-shadow:
-    0 0 15px rgba(255,255,255,0.2),
-    0 15px 40px rgba(0,0,0,0.7);
+  transform: scale(0.8) translateY(25px);
+  transition: all 1.8s ease;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-/* glow magic */
-.title.show {
+.name.show {
   opacity: 1;
   transform: scale(1) translateY(0);
-  animation: glow 3s ease-in-out infinite;
 }
 
-@keyframes glow {
-  0%,100% {
-    text-shadow:
-      0 0 10px rgba(255,255,255,0.2),
-      0 15px 40px rgba(0,0,0,0.7);
+/* ✨ UPDATED ONLY THIS PART */
+.wedding-title {
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  color: #f5e6d3;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 4px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* smooth sequence (NEW ONLY ADDITION) */
+.wedding-title.show {
+  animation: fadeIn 1.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  50% {
-    text-shadow:
-      0 0 25px rgba(255,255,255,0.35),
-      0 15px 50px rgba(0,0,0,0.8);
-  }
 }
 
-/* subtitle reveal */
-.subtitle.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* COUNTDOWN TOP */
+/* TIMER TOP */
 .countdown {
   position: absolute;
   bottom: 40px;
@@ -110,13 +92,14 @@ video {
   color: #f5e6d3;
 }
 
-/* SOUND BUTTON */
+/* SOUND BUTTON (FIXED) */
 .sound-btn {
   position: absolute;
   top: 20px;
   left: 20px;
   width: 46px;
   height: 46px;
+
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -135,14 +118,13 @@ video {
   background: rgba(245, 240, 230, 0.2);
 }
 
+/* ICON */
 .sound-icon {
   width: 22px;
   height: 22px;
   stroke: #f5e6d3;
   fill: none;
   stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
 }
 
 /* BELOW SECTION */
@@ -150,15 +132,18 @@ video {
   padding: 60px 20px;
 }
 
-/* TIMER */
+/* TIMER CARDS */
 .timer-grid {
   display: flex;
   justify-content: center;
   gap: 12px;
-  flex-wrap: wrap;
-  margin-top: -40px;
+  flex-wrap: nowrap;        /* FIX */
+  overflow-x: auto;         /* FIX iPhone scroll */
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
 }
 
+/* CARD */
 .card {
   width: 80px;
   height: 90px;
@@ -170,6 +155,7 @@ video {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 0 0 auto;
 }
 
 .card h2 {
@@ -241,7 +227,6 @@ video {
 
 <body>
 
-<!-- VIDEO -->
 <div class="video-container">
 
   <video id="video" autoplay muted loop playsinline>
@@ -250,31 +235,25 @@ video {
 
   <div class="overlay"></div>
 
-  <!-- 💎 CENTER INVITATION -->
-  <div class="invite">
+  <!-- THE WEDDING OF -->
+  <div class="wedding-title" id="wedding">THE WEDDING OF</div>
 
-    <div id="subtitle" class="subtitle">THE WEDDING OF</div>
-
-    <div id="title" class="title">Mays & Rami</div>
-
-  </div>
+  <div id="name" class="name">Mays & Rami</div>
 
   <div class="countdown">
     <div id="timerTop"></div>
   </div>
 
-  <!-- SOUND -->
   <div class="sound-btn" id="soundBtn">
-    <svg class="sound-icon" viewBox="0 0 24 24">
+    <svg id="icon" class="sound-icon" viewBox="0 0 24 24">
       <path d="M11 5L6 9H3v6h3l5 4V5z"></path>
-      <path d="M15 9c1 1 1 5 0 6"></path>
-      <path d="M18 7c2 2 2 9 0 11"></path>
+      <path id="wave1" d="M15 9c1 1 1 5 0 6"></path>
+      <path id="wave2" d="M18 7c2 2 2 9 0 11"></path>
     </svg>
   </div>
 
 </div>
 
-<!-- BELOW -->
 <div class="section">
 
   <div class="timer-grid">
@@ -295,24 +274,37 @@ video {
     <p>You are warmly invited to celebrate our special day</p>
   </div>
 
-  <div class="timeline">
-    <div class="event"><h4>Arrival</h4><span>5:00 PM</span></div>
-    <div class="event"><h4>Ceremony</h4><span>6:00 PM</span></div>
-    <div class="event"><h4>Celebration</h4><span>8:00 PM</span></div>
-  </div>
-
 </div>
 
 <script>
 
-/* SEQUENCE ANIMATION */
+const video = document.getElementById("video");
+const btn = document.getElementById("soundBtn");
+const wave1 = document.getElementById("wave1");
+const wave2 = document.getElementById("wave2");
+
+video.muted = true;
+
+btn.addEventListener("click", () => {
+  video.muted = !video.muted;
+
+  if (video.muted) {
+    wave1.style.opacity = "0.2";
+    wave2.style.opacity = "0.2";
+  } else {
+    wave1.style.opacity = "1";
+    wave2.style.opacity = "1";
+  }
+});
+
+/* SEQUENCE FIX (NEW ONLY) */
 setTimeout(() => {
-  document.getElementById("subtitle").classList.add("show");
-}, 800);
+  document.getElementById("wedding").classList.add("show");
+}, 600);
 
 setTimeout(() => {
-  document.getElementById("title").classList.add("show");
-}, 1500);
+  document.getElementById("name").classList.add("show");
+}, 1600);
 
 /* TIMER */
 const targetDate = new Date("Jun 12, 2026 00:00:00").getTime();
