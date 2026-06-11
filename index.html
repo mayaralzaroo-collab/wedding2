@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Elegant Invitation</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Playfair+Display:wght@400;600&display=swap');
+
+body {
+  margin: 0;
+  background: #f5f0e6;
+  font-family: 'Playfair Display', serif;
+}
+
+/* VIDEO */
+.video-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+video {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ✨ upgraded luxury overlay */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.65)
+  );
+}
+
+/* ================= INVITATION CENTER ================= */
+.invite {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #f5e6d3;
+}
+
+/* small line */
+.subtitle {
+  font-size: 14px;
+  letter-spacing: 4px;
+  opacity: 0;
+
+  transform: translateY(10px);
+  transition: all 1s ease;
+}
+
+/* big names */
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 52px;
+  letter-spacing: 3px;
+  margin-top: 10px;
+
+  opacity: 0;
+  transform: scale(0.85) translateY(20px);
+
+  transition: all 1.4s ease;
+
+  text-shadow:
+    0 0 15px rgba(255,255,255,0.2),
+    0 15px 40px rgba(0,0,0,0.7);
+}
+
+/* glow magic */
+.title.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,100% {
+    text-shadow:
+      0 0 10px rgba(255,255,255,0.2),
+      0 15px 40px rgba(0,0,0,0.7);
+  }
+  50% {
+    text-shadow:
+      0 0 25px rgba(255,255,255,0.35),
+      0 15px 50px rgba(0,0,0,0.8);
+  }
+}
+
+/* subtitle reveal */
+.subtitle.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* COUNTDOWN TOP */
+.countdown {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  color: #f5e6d3;
+}
+
+/* SOUND BUTTON */
+.sound-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(245, 240, 230, 0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.sound-btn:hover {
+  transform: scale(1.08);
+  background: rgba(245, 240, 230, 0.2);
+}
+
+.sound-icon {
+  width: 22px;
+  height: 22px;
+  stroke: #f5e6d3;
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* BELOW SECTION */
+.section {
+  padding: 60px 20px;
+}
+
+/* TIMER */
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: -40px;
+}
+
+.card {
+  width: 80px;
+  height: 90px;
+  background: rgba(255,255,255,0.45);
+  border: 1px solid rgba(180,160,120,0.35);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #3a2f24;
+}
+
+.card p {
+  margin: 0;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+/* VENUE */
+.venue {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.venue img {
+  width: 90%;
+  max-width: 320px;
+  border-radius: 18px;
+  border: 1px solid rgba(180,160,120,0.4);
+}
+
+.btn {
+  margin-top: 10px;
+  padding: 10px 18px;
+  border: 1px solid #b89b6a;
+  background: transparent;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* COUPLE */
+.couple {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.couple h2 {
+  font-family: 'Cinzel';
+}
+
+/* TIMELINE */
+.timeline {
+  max-width: 400px;
+  margin: 60px auto;
+  border-left: 2px solid #b89b6a;
+  padding-left: 20px;
+}
+
+.event {
+  margin-bottom: 20px;
+}
+
+.event h4 {
+  margin: 0;
+}
+
+.event span {
+  font-size: 12px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO -->
+<div class="video-container">
+
+  <video id="video" autoplay muted loop playsinline>
+    <source src="فيديو.mp4">
+  </video>
+
+  <div class="overlay"></div>
+
+  <!-- 💎 CENTER INVITATION -->
+  <div class="invite">
+
+    <div id="subtitle" class="subtitle">THE WEDDING OF</div>
+
+    <div id="title" class="title">Mays & Rami</div>
+
+  </div>
+
+  <div class="countdown">
+    <div id="timerTop"></div>
+  </div>
+
+  <!-- SOUND -->
+  <div class="sound-btn" id="soundBtn">
+    <svg class="sound-icon" viewBox="0 0 24 24">
+      <path d="M11 5L6 9H3v6h3l5 4V5z"></path>
+      <path d="M15 9c1 1 1 5 0 6"></path>
+      <path d="M18 7c2 2 2 9 0 11"></path>
+    </svg>
+  </div>
+
+</div>
+
+<!-- BELOW -->
+<div class="section">
+
+  <div class="timer-grid">
+    <div class="card"><h2 id="d">0</h2><p>DAYS</p></div>
+    <div class="card"><h2 id="h">0</h2><p>HOURS</p></div>
+    <div class="card"><h2 id="m">0</h2><p>MIN</p></div>
+    <div class="card"><h2 id="s">0</h2><p>SEC</p></div>
+  </div>
+
+  <div class="venue">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPyxAj3WGRB8vDkFlK_SZCOoC1U4fGBVfPUarIIPyY2RLHxVoSTomI_HA&s=10">
+    <h3>Wedding Hall</h3>
+    <button class="btn">Open Location</button>
+  </div>
+
+  <div class="couple">
+    <h2>We are getting married</h2>
+    <p>You are warmly invited to celebrate our special day</p>
+  </div>
+
+  <div class="timeline">
+    <div class="event"><h4>Arrival</h4><span>5:00 PM</span></div>
+    <div class="event"><h4>Ceremony</h4><span>6:00 PM</span></div>
+    <div class="event"><h4>Celebration</h4><span>8:00 PM</span></div>
+  </div>
+
+</div>
+
+<script>
+
+/* SEQUENCE ANIMATION */
+setTimeout(() => {
+  document.getElementById("subtitle").classList.add("show");
+}, 800);
+
+setTimeout(() => {
+  document.getElementById("title").classList.add("show");
+}, 1500);
+
+/* TIMER */
+const targetDate = new Date("Jun 12, 2026 00:00:00").getTime();
+
+function update() {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((diff%(1000*60*60))/(1000*60));
+  const s = Math.floor((diff%(1000*60))/1000);
+
+  document.getElementById("d").innerText = d;
+  document.getElementById("h").innerText = h;
+  document.getElementById("m").innerText = m;
+  document.getElementById("s").innerText = s;
+
+  document.getElementById("timerTop").innerText =
+    `${d}d : ${h}h : ${m}m : ${s}s`;
+}
+
+setInterval(update,1000);
+update();
+
+</script>
+
+</body>
+</html>
